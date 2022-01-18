@@ -78,6 +78,7 @@ class Blockchain{
                 this.difficulty=2;
                 this.pendingTransactions=[];
                 this.miningReward=200;
+                
             }
 
             addGenesisBlock(){
@@ -89,18 +90,23 @@ class Blockchain{
             }
 
             minePendingTransactions(miningRewardAddress){
-
+            
             const rewardTx = new Transaction(null,miningRewardAddress,this.miningReward);
             this.pendingTransactions.push(rewardTx);
+
 
             let block= new Block(Date.now(),this.pendingTransactions,this.getLastBlock().hash);
             block.mineBlock(this.difficulty);
 
-            console.log('block mining succefull ...\n');
+            // console.log('block mining succefull ...\n');
 
             this.chain.push(block);
 
+            
+
             this.pendingTransactions=[];
+
+            
             
             }
 
@@ -122,24 +128,30 @@ class Blockchain{
                 //   if (this.getBalanceOfAddress(transaction.fromAddress) < transaction.amount) {
                 //     throw new Error('Not enough balance');
                 //   }
+
+                  
                 this.pendingTransactions.push(transaction);
             }
 
             getBalanceOfAddress(address){
                 let balance=0;
-
+                
                 for(const block of this.chain){
                     for(const trans of block.transactions){
-                        if(trans.fromAddress===address){
+                        if(trans.fromAddress===address ){
+                           
                             balance=balance - trans.amount;
                         }
                         if(trans.toAddress===address){
                             balance=balance + trans.amount;
                         }
+                        if( this.miningReward <trans.amount){
+                            console.log('\n your balance is not enough');
+                        }
+                        
                     }
                 }
-
-                return balance;
+                 return balance;
             }
 
             isChainValid(){

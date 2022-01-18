@@ -9,7 +9,7 @@ const MyWalletAddress= MyKey.getPublic('hex');
 
 let ahmadblockch= new Blockchain();
 
-const tx1= new Transaction(MyWalletAddress,'public address here',10);
+const tx1= new Transaction(MyWalletAddress,'public address here',700);
 tx1.signTransaction(MyKey);
 ahmadblockch.addTransaction(tx1);
 
