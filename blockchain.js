@@ -1,6 +1,8 @@
 const SHA256 = require("crypto-js/sha256");
-const EC = require("elliptic").ec;
-const ec = new EC('secp256k1');
+const EC = require('elliptic');
+const ec = new EC.ec('secp256k1');
+const debug = require('debug')('ahmad_blockchain:blockchain');
+
 
 
 class Transaction{
@@ -131,6 +133,7 @@ class Blockchain{
 
                   
                 this.pendingTransactions.push(transaction);
+                debug('transaction added: %s', transaction);
             }
 
             getBalanceOfAddress(address){
@@ -141,6 +144,8 @@ class Blockchain{
                         if(trans.fromAddress===address ){
                            
                             balance=balance - trans.amount;
+
+                            
                         }
                         if(trans.toAddress===address){
                             balance=balance + trans.amount;

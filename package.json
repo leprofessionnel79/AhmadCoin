@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/leprofessionnel79/AhmadCoin/issues"
   },
-  "homepage": "https://github.com/leprofessionnel79/AhmadCoin#readme"
+  "homepage": "https://github.com/leprofessionnel79/AhmadCoin#readme",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+	"debug": "^4.1.1",
+    "elliptic": "^6.5.4"
+  }
 }

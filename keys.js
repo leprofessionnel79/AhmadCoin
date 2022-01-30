@@ -1,4 +1,4 @@
-const EC = require("elliptic").ec;
+import { ec as EC } from "elliptic";
 const ec = new EC('secp256k1');
 
 const key = ec.genKeyPair();
